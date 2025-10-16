@@ -34,5 +34,5 @@ async def get_ipinfo(request: Request):
         'country': data.get('country'),
         'city': data.get('city'),
         'timezone': data.get('timezone'),
-        'isp' : data.get('org').split()[1]
+        'isp' : data.get('org').split()[1:]
     }
