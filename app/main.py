@@ -28,11 +28,13 @@ async def get_ipinfo(request: Request):
         data = response.json()
 
     return {
-        'ip': ip,
         #'ip': data.get('ip', ip),
-        'coordinates': data.get('loc'),
+        'ip': ip,
+        #'coordinates': data.get('loc'),
+        'coordinates': [float(coord) for coord in data.get('loc').split(',')],
         'country': data.get('country'),
         'city': data.get('city'),
         'timezone': data.get('timezone'),
+        #'isp' : data.get('org'),
         'isp' : ' '.join(data.get('org').split()[1:])
     }
