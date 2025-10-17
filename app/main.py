@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 import httpx
+from decimal import Decimal
 
 app = FastAPI()
 
@@ -31,7 +32,8 @@ async def get_ipinfo(request: Request):
         #'ip': data.get('ip', ip),
         'ip': ip,
         #'coordinates': data.get('loc'),
-        'coordinates': [float(coord) for coord in data.get('loc').split(',')],
+        #'coordinates': [float(coord) for coord in data.get('loc').split(',')],
+        'coordinates': [Decimal(coord) for coord in data.get('loc').split(',')],
         'country': data.get('country'),
         'city': data.get('city'),
         'timezone': data.get('timezone'),
